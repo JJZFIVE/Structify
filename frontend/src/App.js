@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Calendar from './Calendar.js'
+import Input1 from './Input1.js';
+import Input2 from './Input2.js';
 
 function App() {
+  const [hardDict, setHardDict] = useState({});
+
+  function hardDictCallback(data) {
+    setHardDict(data);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Input1 callbackFunc={hardDictCallback}/>
+          </Route>
+          <Route exact path="/input2">
+            <Input2 hardDict={hardDict}/>
+          </Route>
+          <Route exact path="/calendar">
+            <Calendar />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
