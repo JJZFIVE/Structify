@@ -21,31 +21,127 @@ import Grid from '@material-ui/core/Grid';
 
 // 2nd parameter is monthIndex = month # - 1
 
-/*
 const appointments = [
     {
-      title: 'Fuck Goldberg',
-      startDate: new Date(2021, 9, 24, 9, 45),
-      endDate: new Date(2021, 9, 24, 11, 15),
-      priority: 3,
-      location: 'Room 2',
+      title: 'TAMID GBM',
+      startDate: new Date(2021, 9, 24, 17, 0),
+      endDate: new Date(2021, 9, 24, 18, 0),
     }, {
-      title: 'Approve New Online Marketing Strategy',
-      startDate: new Date(2021, 9, 25, 11, 10),
-      endDate: new Date(2021, 9, 25, 12, 40),
-      priority: 1,
-      location: 'Room 1',
+      title: 'COMPSCI 101',
+      startDate: new Date(2021, 9, 25, 10, 15),
+      endDate: new Date(2021, 9, 25, 11, 30),
     },
+    {
+      title: 'EGR 201',
+      startDate: new Date(2021, 9, 25, 12, 0),
+      endDate: new Date(2021, 9, 25, 12, 50),
+    },
+    {
+      title: 'PHILOSOPHY 101',
+      startDate: new Date(2021, 9, 25, 13, 45),
+      endDate: new Date(2021, 9, 25, 15, 0),
+    },
+    {
+      title: 'TAMID Zoom',
+      startDate: new Date(2021, 9, 26, 10, 0),
+      endDate: new Date(2021, 9, 26, 11, 0),
+    },
+    {
+      title: 'MATH 353',
+      startDate: new Date(2021, 9, 26, 12, 0),
+      endDate: new Date(2021, 9, 26, 13, 15),
+    },
+    {
+      title: 'EGR 201 LAB',
+      startDate: new Date(2021, 9, 26, 15, 45),
+      endDate: new Date(2021, 9, 26, 17, 15),
+    },
+    {
+      title: 'Duke Motorsports',
+      startDate: new Date(2021, 9, 26, 20, 30),
+      endDate: new Date(2021, 9, 26, 22, 30),
+    },
+    {
+      title: 'COMPSCI 101',
+      startDate: new Date(2021, 9, 27, 10, 15),
+      endDate: new Date(2021, 9, 27, 11, 30),
+    },
+    {
+      title: 'EGR 201',
+      startDate: new Date(2021, 9, 27, 12, 0),
+      endDate: new Date(2021, 9, 27, 12, 50),
+    },
+    {
+      title: 'PHILOSOPHY 101',
+      startDate: new Date(2021, 9, 27, 13, 45),
+      endDate: new Date(2021, 9, 27, 15, 0),
+    },
+    {
+      title: 'MATH 353',
+      startDate: new Date(2021, 9, 28, 12, 0),
+      endDate: new Date(2021, 9, 28, 13, 15),
+    },
+    {
+      title: 'EGR 201 LAB',
+      startDate: new Date(2021, 9, 28, 15, 45),
+      endDate: new Date(2021, 9, 28, 17, 15),
+    },
+    {
+      title: "Doctor's Appointment",
+      startDate: new Date(2021, 9, 28, 18, 0),
+      endDate: new Date(2021, 9, 28, 18, 30),
+    },
+    {
+      title: 'COMPSCI 101',
+      startDate: new Date(2021, 9, 29, 10, 15),
+      endDate: new Date(2021, 9, 29, 11, 30),
+    },
+    {
+      title: 'EGR 201',
+      startDate: new Date(2021, 9, 29, 12, 0),
+      endDate: new Date(2021, 9, 29, 12, 50),
+    },
+    {
+      title: 'Halloween Party',
+      startDate: new Date(2021, 9, 30, 12, 0),
+      endDate: new Date(2021, 9, 30, 15, 0),
+    },
+    {
+      title: 'Practice Coding',
+      startDate: new Date(2021, 9, 26, 13, 30),
+      endDate: new Date(2021, 9, 26, 14, 0),
+    },
+    {
+      title: 'Practice Coding',
+      startDate: new Date(2021, 9, 28, 14, 0),
+      endDate: new Date(2021, 9, 28, 14, 30),
+    },
+    {
+      title: 'Exercise',
+      startDate: new Date(2021, 9, 25, 16, 0),
+      endDate: new Date(2021, 9, 25, 17, 0),
+    },
+    {
+      title: 'Exercise',
+      startDate: new Date(2021, 9, 27, 16, 0),
+      endDate: new Date(2021, 9, 27, 17, 0),
+    },
+    {
+      title: 'Exercise',
+      startDate: new Date(2021, 9, 29, 16, 0),
+      endDate: new Date(2021, 9, 29, 17, 0),
+    }
+
   ];
-  */
 
 class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
+    console.log(appointments);
 
     this.state = {
-      data: this.props.hardDict,
-
+      //data: this.props.hardDict,
+      data: appointments
     };
     this.commitChanges = this.commitChanges.bind(this);
   }
@@ -95,11 +191,11 @@ class Calendar extends React.PureComponent {
         <IntegratedEditing />
 
           <DayView
-            startDayHour={8}
+            startDayHour={10}
             endDayHour={20}
           />
           <WeekView
-            startDayHour={8}
+            startDayHour={10}
             endDayHour={20}
           />
 

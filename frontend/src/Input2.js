@@ -9,8 +9,8 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
     textField: {
-      marginTop: 20,
-      marginBottom: 20,
+      marginTop: 10,
+      marginBottom: 10,
       align: "center",
       display: "block"
     },
@@ -35,6 +35,7 @@ export default function Input2(props) {
     const [length, setLength] = useState();
     const [frequency, setFrequency] = useState();
     const [softDict, setSoftDict] = useState({});
+    const [addSoftList, setAddSoftList] = useState([]);
 
     function onUpload() {
         const tempDict = {};
@@ -44,19 +45,39 @@ export default function Input2(props) {
         const newDict = copy(softDict);
         newDict[Object.keys(softDict).length] = tempDict;
         setSoftDict(newDict);
-        console.log(softDict);
 
-        // Fetch request
-        const opts = {
-          method: "POST",
-          body: {"hardDict": props.hardDict, "softDict": softDict}
-        }
-        fetch(`/api/get-times`, opts).then(r => r.json()).then(r => console.log(r)).catch(error => console.log(error));
-        
         // Set values to null
         setTitle("");
         setLength("");
         setFrequency("");
+    }
+
+    function onNext() {
+       // Fetch request
+       const opts = {
+        "hardDict": props.hardDict, 
+        "softDict": softDict
+      }
+
+      fetch("/api", {
+        method: "post",
+        body: JSON.stringify(opts)
+      }).then(r => r.json())
+      .then(r => {
+        const tempDict = {};
+        for (let item in r) {
+          console.log(item);
+          tempDict = {"title": item.title, 
+          "startDate": new Date(item.startYear, item.startMonth, item.startDay, item.startHour, item.startMinute), 
+          "endDate": new Date(item.endYear, item.endMonth, item.endDay, item.endHour, item.endMinute)};
+          setAddSoftList(addSoftList.push(tempDict));
+        }
+        /* props.callbackFuncAddSoftList(addSoftList);
+        console.log("test:", addSoftList);*/
+      }
+      )
+        .catch(error => console.log(error));
+      history.push("/calendar");
     }
 
 
@@ -70,11 +91,19 @@ export default function Input2(props) {
       }
 
     return (
-        <div className="body1">
+        <div className="body3">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
-          <Typography variant="h3">
+          <Typography variant="h3" className={classes.bottomMargin}>
             Enter Optional Commitments
           </Typography>
+
+          <Grid container spacing={6} alignItems="center" justifyContent="center">
+             <Grid item xs={12} md={12} lg={8} direction="column" alignItems="center" justifyContent="center">
+                <Typography variant="h6" align="center">
+                  Almost done! Last but not least, tell us all of the things you'd like to get done during the week. Want to practice singing 3 times per week? Haven't been calling your parents as much as you should? We'll automatically build them into your schedule.
+                </Typography>
+              </Grid>
+            </Grid>
           
           <br /> <br />
             
@@ -120,7 +149,7 @@ export default function Input2(props) {
           
         <Button onClick={onUpload} startIcon={<CloudUploadIcon />} variant="contained" color="primary">Upload Event</Button>
         <br /> <br />
-        <Button onClick={() => {history.push("/calendar")}} variant="contained">Next</Button>
+        <Button onClick={onNext} variant="contained">Next</Button>
         <br /> 
         <Button onClick={() => {history.push("/input1")}} variant="contained">Back</Button>
       </Grid>

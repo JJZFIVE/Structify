@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -29,6 +29,14 @@ const useStyles = makeStyles({
         align: "center",
         display: "block"
       },
+      paper: {
+        display: 'flex',
+        '& > *': {
+          margin: 1
+        },
+        width: 800,
+        backgroundColor: "#EAEAEA"
+    },
   });
 
 
@@ -49,10 +57,17 @@ export default function Preferences(props) {
 
     return (
         <div className="body1">
-            <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "90vh" }}>
+            <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
             <Typography variant="h3" className={classes.textField}>
                 Enter Preferences
             </Typography>
+             <Grid container spacing={6} alignItems="center" justifyContent="center">
+             <Grid item xs={12} md={12} lg={6} direction="column" alignItems="center" justifyContent="center">
+                <Typography variant="h6" align="center">
+                  Tell us the earliest and latest time you want us to start scheduling your events for you. Whether you're a morning bird or night owl, we'll plan your free time exactly how you want it. 
+                </Typography>
+              </Grid>
+            </Grid>
 
             <div className={classes.textField}>
             <Typography variant="h6" color="default" className={classes.topMargin}>
@@ -79,7 +94,7 @@ export default function Preferences(props) {
                 />
             </MuiPickersUtilsProvider>
             </div>
-            
+            <br /> <br />
 
             <Button onClick={onSubmit} variant="contained">Submit</Button>
             </Grid>

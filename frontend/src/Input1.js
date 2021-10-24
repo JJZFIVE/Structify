@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -31,6 +31,13 @@ const useStyles = makeStyles({
         align: "center",
         display: "block"
       },
+      paper: {
+        display: 'flex',
+        '& > *': {
+          margin: 1
+        },
+        backgroundColor: "#EAEAEA"
+    },
   })
 
 export default function Input1(props) {
@@ -57,7 +64,7 @@ export default function Input1(props) {
         // Set values to null
         setTitle("");
 
-        // Fetch the hardDict in POST Request
+        
 
     }
 
@@ -73,26 +80,31 @@ export default function Input1(props) {
     function onNext() {
         // Send the list, not the dictionary
         props.callbackFuncList(hardList);
-        props.callbackFuncDict(hardDict);
+        //props.callbackFuncDict(hardDict);
         history.push("/input2"); 
     }
 
 
     return (
-        <div className="body1">
+        <div className="body2">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
-          <Typography variant="h3">
+          <Typography variant="h3" className={classes.bottomMargin}>
             Enter Mandatory Events
           </Typography>
+
+             <Grid container spacing={6} alignItems="center" justifyContent="center">
+             <Grid item xs={12} md={12} lg={6} direction="column" alignItems="center" justifyContent="center">
+                <Typography variant="h6" align="center">
+                  Now, enter in all events in your calendar that are required. The most common example is your class schedule. 
+                </Typography>
+              </Grid>
+            </Grid>
           
           <br /> <br />
           <form noValidate autoComplete="off">
-              <Typography variant="h6" color="default">
-                Enter Name of Event
-              </Typography>
             <TextField 
               className={classes.textField}
-              label="Name"
+              label="Name of Event"
               variant="outlined"
               color="secondary"
               required
