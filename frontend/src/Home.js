@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Paper, Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import banner from './fulllogo.png';
+
 
 const useStyles = makeStyles({
     textField: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
       display: "block"
     },
     topMargin: {
-        marginTop: 20,
+        marginTop: 80,
         marginBottom: 5,
         align: "center",
         display: "block"
@@ -30,7 +31,14 @@ const useStyles = makeStyles({
         marginBottom: 100,
         align: "center",
         display: "block"
-      }
+      },
+      paper: {
+        display: 'flex',
+        '& > *': {
+          margin: 1
+        },
+        backgroundColor: "#EAEAEA"
+    },
   });
 
 export default function Home() {
@@ -39,13 +47,29 @@ export default function Home() {
 
 
     return (
-      <div className="body1">
-        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "80vh" }}>
-        <Typography variant="h2" className={classes.headerMargin}>
-            Structify
-        </Typography>
-            <Button onClick={() => history.push("/preferences")} variant="contained" color="primary">Enter Site</Button>
+      <div>
+        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "95vh" }}>
+        <img src={banner}/>
+        <br /> <br />
+        <Container>
+        <Paper className={classes.paper}>
+        <Grid container spacing={6} alignItems="center" justifyContent="center">
+            <Grid item xs={12} md={12} lg={10} direction="column" alignItems="center" justifyContent="center">
+            <Typography align="center" variant="h6" className={classes.textField}>
+                Too many college students fall victim to the trap of having too much free time, so we've built a custom schedule generator to fix that.
+                First, input mandatory events, like classes, to form a base for your schedule. 
+                Then, add your hobbies, workouts, assignments, or anything else you want to do, and sit back as we  
+                automatically Structify your free time.
+                </Typography>
+            </Grid>
         </Grid>
+        </Paper>
+        </Container>
+
+        <Button onClick={() => history.push("/preferences")} variant="contained" color="primary" size="large" className={classes.topMargin}>Enter Site</Button>
+        </Grid>
+        
+
       </div>
     )
 }

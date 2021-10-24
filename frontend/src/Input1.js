@@ -72,15 +72,15 @@ export default function Input1(props) {
 
     function onNext() {
         // Send the list, not the dictionary
-        props.callbackFunc(hardList);
+        props.callbackFuncList(hardList);
+        props.callbackFuncDict(hardDict);
         history.push("/input2"); 
     }
 
 
     return (
-        <div className="body2">
+        <div className="body1">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
-            <button onClick={() => console.log(hardList)}>asdf;asldfs</button>
           <Typography variant="h3">
             Enter Mandatory Events
           </Typography>

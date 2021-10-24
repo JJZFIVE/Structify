@@ -12,7 +12,8 @@ import Input2 from './Input2.js';
 import Preferences from './Preferences.js';
 
 function App() {
-  const [hardDict, setHardDict] = useState([]);
+  const [hardDict, setHardDict] = useState({});
+  const [hardList, setHardList] = useState([]);
   const [preferences, setPreferences] = useState([]);
   const [test, setTest] = useState([{
     title: 'Test',
@@ -21,6 +22,11 @@ function App() {
       priority: 3,
       location: 'Room 2',
   }]);
+
+  function hardListCallback(data) {
+    setHardList(data);
+    console.log(data);
+  }
 
   function hardDictCallback(data) {
     setHardDict(data);
@@ -42,13 +48,13 @@ function App() {
               <Preferences callbackFunc={preferenceCallback}/>
           </Route>
           <Route exact path="/input1">
-            <Input1 callbackFunc={hardDictCallback}/>
+            <Input1 callbackFuncList={hardListCallback} callbackFuncDict={hardDictCallback}/>
           </Route>
           <Route exact path="/input2">
             <Input2 hardDict={hardDict}/>
           </Route>
           <Route exact path="/calendar">
-            <Calendar hardDict={hardDict}/>
+            <Calendar hardList={hardList} />
           </Route>
         </Switch>
       </Router>

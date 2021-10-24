@@ -28,7 +28,7 @@ const useStyles = makeStyles({
       },
   });
 
-export default function Input2({hardDict}) {
+export default function Input2(props) {
     const classes = useStyles();
     const history = useHistory();
     const [title, setTitle] = useState(null);
@@ -45,6 +45,13 @@ export default function Input2({hardDict}) {
         newDict[Object.keys(softDict).length] = tempDict;
         setSoftDict(newDict);
         console.log(softDict);
+
+        // Fetch request
+        const opts = {
+          method: "POST",
+          body: {"hardDict": props.hardDict, "softDict": softDict}
+        }
+        fetch(`/api/get-times`, opts).then(r => r.json()).then(r => console.log(r)).catch(error => console.log(error));
         
         // Set values to null
         setTitle("");
@@ -63,7 +70,7 @@ export default function Input2({hardDict}) {
       }
 
     return (
-        <div className="body3">
+        <div className="body1">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
           <Typography variant="h3">
             Enter Optional Commitments
