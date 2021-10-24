@@ -50,7 +50,7 @@ export default function Preferences(props) {
     return (
         <div className="body1">
             <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "90vh" }}>
-            <Typography variant="h3" color="primary" className={classes.textField}>
+            <Typography variant="h3" className={classes.textField}>
                 Enter Preferences
             </Typography>
 
@@ -60,7 +60,6 @@ export default function Preferences(props) {
               </Typography>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardTimePicker
-                label="Masked timepicker"
                 placeholder="08:00 AM"
                 mask="__:__ _M"
                 value={startDate}
@@ -74,8 +73,7 @@ export default function Preferences(props) {
               </Typography>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardTimePicker
-                label="Material Date Picker"
-                placeholder="08:00 AM"
+                placeholder="08:00 PM"
                 value={endDate}
                 onChange={date => setEndDate(date)}
                 />

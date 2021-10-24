@@ -45,7 +45,7 @@ export default function Input2({hardDict}) {
         newDict[Object.keys(softDict).length] = tempDict;
         setSoftDict(newDict);
         console.log(softDict);
-
+        
         // Set values to null
         setTitle("");
         setLength("");
@@ -65,7 +65,7 @@ export default function Input2({hardDict}) {
     return (
         <div className="body3">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
-          <Typography variant="h3" color="primary">
+          <Typography variant="h3">
             Enter Optional Commitments
           </Typography>
           
@@ -114,7 +114,7 @@ export default function Input2({hardDict}) {
         <Button onClick={onUpload} startIcon={<CloudUploadIcon />} variant="contained" color="primary">Upload Event</Button>
         <br /> <br />
         <Button onClick={() => {history.push("/calendar")}} variant="contained">Next</Button>
-        <br /> <br />
+        <br /> 
         <Button onClick={() => {history.push("/input1")}} variant="contained">Back</Button>
       </Grid>
         </div>
