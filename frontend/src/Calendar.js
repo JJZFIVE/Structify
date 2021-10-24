@@ -11,7 +11,7 @@ import {
   ViewSwitcher,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { Button } from '@material-ui/core';
-
+import Grid from '@material-ui/core/Grid';
 
 const appointments = [
     {
@@ -46,6 +46,7 @@ class Calendar extends React.PureComponent {
     const { data } = this.state;
 
     return (
+    <div>
       <Paper>
         <Scheduler
           data={data}
@@ -69,9 +70,17 @@ class Calendar extends React.PureComponent {
           <ViewSwitcher />
           <Appointments />
         </Scheduler>
-        <Button onClick={this.routingFunction} >Go Back</Button>
+
       </Paper>
-      
+      <Grid container direction="column" alignItems="center" justifyContent="center">
+        <Button onClick={this.routingFunction} variant="outlined" style={{
+        marginTop: 20,
+        marginBottom: 5,
+        align: "center",
+        display: "block"
+      }}>Go Back</Button>
+      </Grid>
+      </div>
     );
   }
 }

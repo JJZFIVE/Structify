@@ -68,7 +68,7 @@ export default function Input1(props) {
     }
 
     return (
-        <div>
+        <div className="body2">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "90vh" }}>
           <Typography variant="h3" color="primary">
             Enter Mandatory Events

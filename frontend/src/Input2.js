@@ -58,7 +58,7 @@ export default function Input2({hardDict}) {
       }
 
     return (
-        <div>
+        <div className="body3">
         <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
           <Typography variant="h3" color="primary">
             Enter Optional Commitments
