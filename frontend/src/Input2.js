@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import DateTimePicker from 'react-datetime-picker';
 
 const useStyles = makeStyles({
     textField: {
@@ -15,7 +14,19 @@ const useStyles = makeStyles({
       align: "center",
       display: "block"
     },
-  })
+    topMargin: {
+        marginTop: 20,
+        marginBottom: 5,
+        align: "center",
+        display: "block"
+      },
+      bottomMargin: {
+        marginTop: 5,
+        marginBottom: 20,
+        align: "center",
+        display: "block"
+      },
+  });
 
 export default function Input2({hardDict}) {
     const classes = useStyles();
@@ -48,7 +59,7 @@ export default function Input2({hardDict}) {
 
     return (
         <div>
-        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "80vh" }}>
+        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "100vh" }}>
           <Typography variant="h3" color="primary">
             Enter Optional Commitments
           </Typography>
@@ -56,6 +67,9 @@ export default function Input2({hardDict}) {
           <br /> <br />
             
           <form noValidate autoComplete="off">
+            <Typography variant="h6" color="default">
+                Enter Name of Commitment
+            </Typography>
             <TextField 
               className={classes.textField}
               label="Name"
@@ -65,6 +79,9 @@ export default function Input2({hardDict}) {
               value={title}
               onChange={(e) => {setTitle(e.target.value)}}
             />
+            <Typography variant="h6" color="default">
+                Enter Length (in Minutes)
+            </Typography>
             <TextField 
               className={classes.textField}
               label="Length"
@@ -74,6 +91,9 @@ export default function Input2({hardDict}) {
               value={length}
               onChange={(e) => {setLength(e.target.value)}}
               />
+              <Typography variant="h6" color="default">
+                Enter Frequency (# per Week)
+            </Typography>
               <TextField 
               className={classes.textField}
               label="Frequency"
@@ -90,7 +110,7 @@ export default function Input2({hardDict}) {
         <br /> <br />
         <Button onClick={() => {history.push("/calendar")}} variant="contained" color="secondary">Next</Button>
         <br /> <br />
-        <Button onClick={() => {history.push("/")}} variant="contained" color="secondary">Back</Button>
+        <Button onClick={() => {history.push("/input1")}} variant="contained" color="secondary">Back</Button>
       </Grid>
         </div>
     )

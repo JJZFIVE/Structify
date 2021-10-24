@@ -6,7 +6,11 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import DateTimePicker from 'react-datetime-picker';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDateTimePicker
+  } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles({
     textField: {
@@ -15,6 +19,18 @@ const useStyles = makeStyles({
       align: "center",
       display: "block"
     },
+    topMargin: {
+        marginTop: 20,
+        marginBottom: 5,
+        align: "center",
+        display: "block"
+      },
+      bottomMargin: {
+        marginTop: 5,
+        marginBottom: 20,
+        align: "center",
+        display: "block"
+      },
   })
 
 export default function Input1(props) {
@@ -22,10 +38,11 @@ export default function Input1(props) {
     const history = useHistory();
     const [title, setTitle] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(null);
+    const [endDate, setEndDate] = useState(new Date());
     const [hardDict, setHardDict] = useState({});
 
     function onUpload() {
+        console.log(JSON.stringify(startDate));
         const tempDict = {};
         tempDict["title"] = title;
         tempDict["startDate"] = startDate;
@@ -52,14 +69,16 @@ export default function Input1(props) {
 
     return (
         <div>
-        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "80vh" }}>
+        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: "90vh" }}>
           <Typography variant="h3" color="primary">
-            Enter mandatory commitments
+            Enter Mandatory Events
           </Typography>
           
           <br /> <br />
-            
           <form noValidate autoComplete="off">
+              <Typography variant="h6" color="default">
+                Enter Name of Event
+              </Typography>
             <TextField 
               className={classes.textField}
               label="Name"
@@ -71,23 +90,37 @@ export default function Input1(props) {
             />
           </form>
 
-          <div>
-            <DateTimePicker
-                className={classes.textField}
-                onChange={setStartDate}
+            <div>
+            <Typography variant="h6" color="default" className={classes.topMargin}>
+                Start Date and Time
+              </Typography>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDateTimePicker
+                
+                label="Material Date Picker"
                 value={startDate}
-            />
+                onChange={setStartDate}
+                />
+            </MuiPickersUtilsProvider>
             </div>
             <div>
-            <DateTimePicker
-                className={classes.textField}
-                onChange={setEndDate}
+            <Typography variant="h6" color="default" className={classes.topMargin}>
+                End Date and Time
+              </Typography>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDateTimePicker
+                className={classes.bottomMargin}
+                label="Material Date Picker"
                 value={endDate}
-            />
+                onChange={setEndDate}
+                />
+            </MuiPickersUtilsProvider>
             </div>
-        <Button onClick={onUpload} startIcon={<CloudUploadIcon />} variant="contained" color="primary">Upload Event</Button>
-        <br /> <br />
-        <Button onClick={onNext} variant="contained" color="secondary">Next</Button>
+            <br />
+            
+        <Button onClick={onUpload} startIcon={<CloudUploadIcon />} variant="contained" color="primary" >Upload Event</Button>
+
+        <Button onClick={onNext} variant="contained" color="secondary" className={classes.topMargin}>Next</Button>
       </Grid>
         </div>
     )

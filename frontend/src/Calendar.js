@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
@@ -10,13 +10,14 @@ import {
   Toolbar,
   ViewSwitcher,
 } from '@devexpress/dx-react-scheduler-material-ui';
+import { Button } from '@material-ui/core';
 
 
 const appointments = [
     {
       title: 'Fuck Goldberg',
-      startDate: new Date(2018, 6, 23, 9, 45),
-      endDate: new Date(2018, 6, 23, 11, 15),
+      startDate: new Date(2021, 10, 24, 9, 45),
+      endDate: new Date(2021, 10, 27, 11, 15),
       priority: 3,
       location: 'Room 2',
     }, {
@@ -28,7 +29,7 @@ const appointments = [
     },
   ];
 
-export default class Demo extends React.PureComponent {
+class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -36,6 +37,10 @@ export default class Demo extends React.PureComponent {
       data: appointments,
     };
   }
+
+  routingFunction = e => {
+    this.props.history.push("/");
+}
 
   render() {
     const { data } = this.state;
@@ -52,19 +57,23 @@ export default class Demo extends React.PureComponent {
           />
 
           <DayView
-            startDayHour={9}
-            endDayHour={18}
+            startDayHour={8}
+            endDayHour={20}
           />
           <WeekView
-            startDayHour={10}
-            endDayHour={19}
+            startDayHour={8}
+            endDayHour={20}
           />
 
           <Toolbar />
           <ViewSwitcher />
           <Appointments />
         </Scheduler>
+        <Button onClick={this.routingFunction} >Go Back</Button>
       </Paper>
+      
     );
   }
 }
+
+export default withRouter(Calendar);

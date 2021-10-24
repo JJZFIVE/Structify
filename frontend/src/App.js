@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Home from './Home.js';
 import Calendar from './Calendar.js'
 import Input1 from './Input1.js';
 import Input2 from './Input2.js';
@@ -20,6 +21,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
+              <Home />
+          </Route>
+          <Route exact path="/input1">
             <Input1 callbackFunc={hardDictCallback}/>
           </Route>
           <Route exact path="/input2">
