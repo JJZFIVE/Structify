@@ -44,7 +44,7 @@ export default function Home() {
         <Typography variant="h2" className={classes.headerMargin}>
             Structify
         </Typography>
-            <Button onClick={() => history.push("/input1")} variant="contained" color="primary">Enter Site</Button>
+            <Button onClick={() => history.push("/preferences")} variant="contained" color="primary">Enter Site</Button>
         </Grid>
       </div>
     )

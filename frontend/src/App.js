@@ -9,12 +9,18 @@ import Home from './Home.js';
 import Calendar from './Calendar.js'
 import Input1 from './Input1.js';
 import Input2 from './Input2.js';
+import Preferences from './Preferences.js';
 
 function App() {
   const [hardDict, setHardDict] = useState({});
+  const [preferences, setPreferences] = useState({});
 
   function hardDictCallback(data) {
     setHardDict(data);
+  }
+
+  function preferenceCallback(data) {
+    setPreferences(data);
   }
 
   return (
@@ -23,6 +29,9 @@ function App() {
         <Switch>
           <Route exact path="/">
               <Home />
+          </Route>
+          <Route exact path="/preferences">
+              <Preferences callbackFunc={preferenceCallback}/>
           </Route>
           <Route exact path="/input1">
             <Input1 callbackFunc={hardDictCallback}/>

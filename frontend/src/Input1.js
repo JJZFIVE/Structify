@@ -51,6 +51,10 @@ export default function Input1(props) {
         newDict[Object.keys(hardDict).length] = tempDict;
         setHardDict(newDict);
         console.log(hardDict);
+
+        // Set vaalues to null
+        setTitle("");
+
     }
 
     function copy(mainObj) {
@@ -120,7 +124,9 @@ export default function Input1(props) {
             
         <Button onClick={onUpload} startIcon={<CloudUploadIcon />} variant="contained" color="primary" >Upload Event</Button>
 
-        <Button onClick={onNext} variant="contained" color="secondary" className={classes.topMargin}>Next</Button>
+        <Button onClick={onNext} variant="contained" className={classes.topMargin}>Next</Button>
+        <br /> <br />
+        <Button onClick={() => {history.push("/preferences")}} variant="contained" >Back</Button>
       </Grid>
         </div>
     )
